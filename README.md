@@ -13,7 +13,7 @@ Please use the make file. Tested with gcc 8.2.0
 `make runNoOp` will make the program without optimization and run
 
 ## What is faster ?
-A simple C++ question try answering this question and using simulator you will may get surprised.
+A simple C++ question. Try answering this question on your own. Then use the simulator. You may get surprised.
 ##### pattern 1
     result = ds.find(x)
     if (result) {
