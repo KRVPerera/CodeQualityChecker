@@ -10,7 +10,7 @@ using namespace std;
 const int TEST_SIZE = 1000000;
 const int INITIAL_SAMPLES = 10;
 
-#define DriveFunc(x,y,z) functionDriver(x, y, &z, #z)
+#define DriveFunc(samples,testSize,functionPtr) functionDriver(samples, testSize, &functionPtr, #functionPtr)
 
 void functionDriver(int samples, int test_size, void (*drivenFunction)(int samples, int test_size, TimesVector& times), std::string functionName) {
 

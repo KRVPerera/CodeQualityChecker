@@ -5,12 +5,13 @@ runNoOp: runmeNoOpt
 	./runmeNoOpt
 
 runmeOpt: test.cpp Utils.h TestAlgorithms.h Common.h
-	#module load gcc/8.2.0
+	#gcc/8.2.0
 	g++ -Wall test.cpp -std=c++0x -o runmeOpt -O3
 
 runmeNoOpt: test.cpp Utils.h TestAlgorithms.h Common.h
-	#module load gcc/8.2.0
+	#gcc/8.2.0
 	g++ -Wall test.cpp -std=c++0x -o runmeNoOpt
+
 perfop: runmeOpt
 	perf stat runmeOpt
 
