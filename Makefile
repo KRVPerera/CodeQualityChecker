@@ -1,3 +1,5 @@
+all: runmeOpt runmeNoOpt
+
 runOp: runmeOpt
 	./runmeOpt
 
