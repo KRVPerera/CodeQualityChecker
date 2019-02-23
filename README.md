@@ -8,6 +8,7 @@ You can write any algorithm inside a function can be driven by the DriveFunc der
 `functionPtr` - This is the pointer to the algorithm you implemented
 
 ## How to build
+[![Build Status](https://travis-ci.com/KRVPerera/CodeQualityChecker.svg?branch=master)](https://travis-ci.com/KRVPerera/CodeQualityChecker)
 Please use the make file. Tested with gcc 8.2.0
 `make runOp` will make the program with -O3 level optimization and run  
 `make runNoOp` will make the program without optimization and run
