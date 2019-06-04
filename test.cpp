@@ -61,10 +61,10 @@ void testSets(int samples, int test_size, int algo) {
 
 void testSetsAll(int samples, int test_size) {
     cout << "=== INTEGER SET TESTING ===" << std::endl;
-    //DriveFunc(samples, test_size, insertToSetPattern1);
-    //DriveFunc(samples, test_size, insertToSetPattern2);
-    //DriveFunc(samples, test_size, insertToSetPattern3);
-    //DriveFunc(samples, test_size, insertToSetPattern4);
+    DriveFunc(samples, test_size, insertToSetPattern1);
+    DriveFunc(samples, test_size, insertToSetPattern2);
+    DriveFunc(samples, test_size, insertToSetPattern3);
+    DriveFunc(samples, test_size, insertToSetPattern4);
     DriveFunc(samples, test_size, insertToSetPattern1Random);
     DriveFunc(samples, test_size, insertToSetPattern2Random);
     DriveFunc(samples, test_size, insertToSetPattern3Random);
