@@ -7,7 +7,7 @@
 #include "Common.h"
 
 using namespace std;
-const int TEST_SIZE = 1000000;
+const int TEST_SIZE = 10000000;
 const int INITIAL_SAMPLES = 10;
 
 #define DriveFunc(samples,testSize,functionPtr) functionDriver(samples, testSize, &functionPtr, #functionPtr)
@@ -48,9 +48,27 @@ void testSets(int samples, int test_size, int algo) {
         case 4:
             DriveFunc(samples, test_size, insertToSetPattern2Random);
             break;
+        case 5:
+            DriveFunc(samples, test_size, insertToSetPattern3);
+            break;
+        case 6:
+            DriveFunc(samples, test_size, insertToSetPattern3Random);
+            break;
         default:
             break;
     }
+}
+
+void testSetsAll(int samples, int test_size) {
+    cout << "=== INTEGER SET TESTING ===" << std::endl;
+    //DriveFunc(samples, test_size, insertToSetPattern1);
+    //DriveFunc(samples, test_size, insertToSetPattern2);
+    //DriveFunc(samples, test_size, insertToSetPattern3);
+    //DriveFunc(samples, test_size, insertToSetPattern4);
+    DriveFunc(samples, test_size, insertToSetPattern1Random);
+    DriveFunc(samples, test_size, insertToSetPattern2Random);
+    DriveFunc(samples, test_size, insertToSetPattern3Random);
+    DriveFunc(samples, test_size, insertToSetPattern4Random);
 }
 
 void testMaps(int samples, int test_size) {
@@ -71,16 +89,17 @@ void vclpPswAlgoTests(int samples, int test_size) {
 // TODO: add menu to choose which algo to run
 // this helps running 'perf stat exe'
 int main() {
-    cout << "START" << endl;
-    int algo, samples;
-    cout << "choose algo : ";
-    cin >> algo;
-    cout << "choose samples : ";
-    cin >> samples;
-    testSets(samples, TEST_SIZE, algo);
+    //cout << "START" << endl;
+    //int algo, samples;
+    //cout << "choose algo : ";
+    //cin >> algo;
+    //cout << "choose samples : ";
+    //cin >> samples;
+    //testSets(samples, TEST_SIZE, algo);
+    testSetsAll(INITIAL_SAMPLES, TEST_SIZE);
 
     cout << endl;
-    //testMaps(INITIAL_SAMPLES, TEST_SIZE);
+//testMaps(INITIAL_SAMPLES, TEST_SIZE);
 
     cout << endl;
     //vclpPswAlgoTests(INITIAL_SAMPLES, TEST_SIZE);

@@ -5,7 +5,7 @@
 
 #define preExit(x) if (x > 50) return
 
-#define RANDOM_RANGE 1000000
+#define RANDOM_RANGE 100000
 
 void insertToSetPattern1(int samples, int test_size, TimesVector& times) {
     preExit(samples);
@@ -56,6 +56,65 @@ void insertToSetPattern1Random(int samples, int test_size, TimesVector& times) {
     }
 }
 
+void insertToSetPattern3Random(int samples, int test_size, TimesVector& times) {
+    preExit(samples);
+    srand (time(NULL));
+    for (int t = 0; t < samples ; ++t) {
+        IntSet intSetp3;
+        IntVec intVec;
+        intVec.reserve(test_size);
+
+        auto start = std::chrono::steady_clock::now();
+
+        for (int i = 0; i < test_size; ++i) {
+
+            int val = rand() % RANDOM_RANGE + 1;
+            IntSet::iterator lb = intSetp3.lower_bound(val);
+
+            if ((lb != intSetp3.end()) && !intSetp3.key_comp()(val, *lb)) {
+            } else {
+                intSetp3.insert(lb, val);
+                intVec.push_back(val);
+            }     
+        }
+        
+        auto finish = std::chrono::steady_clock::now();
+        double elapsed_seconds = std::chrono::duration_cast<std::chrono::duration<double> >(finish - start).count();
+//std::cout << "IntVec : " << intVec.size() << " elapsed : " << elapsed_seconds << std::endl;
+
+        times.push_back(elapsed_seconds);
+    }
+}
+
+void insertToSetPattern4Random(int samples, int test_size, TimesVector& times) {
+    preExit(samples);
+    srand (time(NULL));
+    for (int t = 0; t < samples ; ++t) {
+        IntSet intSetp3;
+        IntVec intVec;
+        intVec.reserve(test_size);
+
+        auto start = std::chrono::steady_clock::now();
+
+        for (int i = 0; i < test_size; ++i) {
+
+            int val = rand() % RANDOM_RANGE + 1;
+            IntSet::iterator lb = intSetp3.upper_bound(val);
+
+            if ((lb != intSetp3.end()) && !intSetp3.key_comp()(val, *lb)) {
+            } else {
+                intSetp3.insert(lb, val);
+                intVec.push_back(val);
+            }     
+        }
+        
+        auto finish = std::chrono::steady_clock::now();
+        double elapsed_seconds = std::chrono::duration_cast<std::chrono::duration<double> >(finish - start).count();
+
+        times.push_back(elapsed_seconds);
+    }
+}
+
 void insertToSetPattern2Random(int samples, int test_size, TimesVector& times) {
     preExit(samples);
     srand (time(NULL));
@@ -96,8 +155,65 @@ void insertToSetPattern2(int samples, int test_size, TimesVector& times) {
         }
 
         auto finish = std::chrono::steady_clock::now();
+        //std::cout << "IntVec : " << intVec.size() << std::endl;
 
         double elapsed_seconds = std::chrono::duration_cast<std::chrono::duration<double> >(finish - start).count();
+        times.push_back(elapsed_seconds);
+    }
+}
+
+void insertToSetPattern3(int samples, int test_size, TimesVector& times) {
+    preExit(samples);
+    for (int t = 0; t < samples ; ++t) {
+        IntSet intSetp3;
+        IntVec intVec;
+        intVec.reserve(test_size);
+
+        auto start = std::chrono::steady_clock::now();
+
+        for (int i = 0; i < test_size; ++i) {
+
+            IntSet::iterator lb = intSetp3.lower_bound(i);
+
+            if ((lb != intSetp3.end()) && !intSetp3.key_comp()(i, *lb)) {
+            } else {
+                intSetp3.insert(lb, i);
+                intVec.push_back(i);
+            }     
+        }
+        
+        auto finish = std::chrono::steady_clock::now();
+        double elapsed_seconds = std::chrono::duration_cast<std::chrono::duration<double> >(finish - start).count();
+        //std::cout << "IntVec : " << intVec.size() << " elapsed : " << elapsed_seconds << std::endl;
+
+        times.push_back(elapsed_seconds);
+    }
+}
+
+void insertToSetPattern4(int samples, int test_size, TimesVector& times) {
+    preExit(samples);
+    for (int t = 0; t < samples ; ++t) {
+        IntSet intSetp3;
+        IntVec intVec;
+        intVec.reserve(test_size);
+
+        auto start = std::chrono::steady_clock::now();
+
+        for (int i = 0; i < test_size; ++i) {
+
+            IntSet::iterator lb = intSetp3.upper_bound(i);
+
+            if ((lb != intSetp3.end()) && !intSetp3.key_comp()(i, *lb)) {
+            } else {
+                intSetp3.insert(lb, i);
+                intVec.push_back(i);
+            }     
+        }
+        
+        auto finish = std::chrono::steady_clock::now();
+        double elapsed_seconds = std::chrono::duration_cast<std::chrono::duration<double> >(finish - start).count();
+        //std::cout << "IntVec : " << intVec.size() << " elapsed : " << elapsed_seconds << std::endl;
+
         times.push_back(elapsed_seconds);
     }
 }
@@ -301,4 +417,6 @@ void interSectVCLP(int samples, int test_size, TimesVector& times) {
         times.push_back(elapsed_seconds);
     }
 }
+
+
 #endif // TEST_ALGORITHMS_H
